@@ -1,0 +1,38 @@
+<%- include('partials/header') -%>
+<div class="wrapper">
+    <header class="row aln-left">
+      <a class="button next off-1 col-1" href="/feed">Feed</a>
+    </header>
+<div class='main'>
+  <div class="inner row">
+    <div class="col-11 off-1 row">
+      <img class="col-7 image" src="<%= post.image%>" />
+      <div class='off-1 col-4 row'>
+      <h2 class='col-12'><%= post.title %></h2>
+      <p col-3><%= post.caption %></p>
+        <h3 class="col-12">Likes: <%= post.likes %></h3>
+        <form
+          class="col-5"
+          action="/post/likePost/<%= post.id %>?_method=PUT"
+          method="POST"
+        >
+          <button class="button next fa fa-heart" type="submit"></button>
+        </form>
+        <%if(post.user == user.id){ %>
+        <form
+          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          method="POST"
+          class="col-5"
+        >
+          <button class="button next fa fa-trash" type="submit"></button>
+        </form>
+        <%}%>
+      </div>
+      <div class="row justify-content-between">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<%- include('partials/footer') -%>
