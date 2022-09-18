@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const CommentSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true
+  },
+  userName: {
+    type: String,
+    required: true
+  },
   comment: {
     type: String,
     required: true,
@@ -9,9 +17,9 @@ const CommentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  user: {
+  post: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Post",
   },
   createdAt: {
     type: Date,
