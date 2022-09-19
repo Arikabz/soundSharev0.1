@@ -4,33 +4,17 @@
 <div class='inner'>
 <div class='row'>
     <div class='col-2'>
-        <span class='image fit'><img class="" src="images/sound-designer.jpeg"></span>
+        <span class='image fit'><img class="" src="<%=user.image%>"></span>
+        <% if(user.id===currentUser.id) {%>
+        <a href='/profilePictureUpdate' class='button small'>edit</a>
+        <% } %>
     <p><strong><%= user.userName %></strong></p>
+        <% if(user.id===currentUser.id) {%>
     <p><strong>Email</strong>: <%= user.email %></p>
+        <% } %>
     <a href="/logout" class="col-3 button next">Logout</a>
+    <a href="/upload" class="col-3 button next">Upload</a>
     </div>
-    <!--
-    <div class="col-3">
-          <div class="">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
-    </div>
-    -->
     <section class='col-9 row off-1'>
     <div class=''>
       <div class="">

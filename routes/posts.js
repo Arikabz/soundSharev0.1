@@ -10,6 +10,7 @@ router.get("/:id", ensureAuth, postsController.getPost);
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.put("/likePost/:id", postsController.likePost);
+router.post("/updateProfilePicture", postsController.updateProfilePicture);
 
 router.delete("/deletePost/:id", postsController.deletePost);
 

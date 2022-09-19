@@ -88,6 +88,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    image:'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   });
 
   User.findOne(
