@@ -1,42 +1,44 @@
-
 <section class='row col-12'>
-<h2 col-5>Add a comment</h2>
-<form action="/comments/createComment/<%= post._id%>" method="POST" class='col-8'>
-    <div class='fields'>
-        <div class='field'
-            <label for='comment' class='form-label'>Comment</label>
-            <input type='text' class='form-control' id='comment' name='comment'>
-        </div>
-    </div>
-    <button type='submit' class='button next' value='Upload'>Submit</button>
-</form>
-
-    <ul class='col-12'>
-            <li>Comments</li>
-        <% for(var i=0; i < comments.length; i++) { %>
-
-            <li class=''>
-                <div class='row'>
-                <div class='col-6'>
-                <p class=''>
-                    <strong><%=comments[i].userName%>: </strong><%=comments[i].comment%>
-                </p>
-                </div>
-              <div class=''>
-                <form action='/comments/likeComment/<%=post._id%>/<%=comments[i]._id%>?_method=PUT' method='POST' class=''>
-                <button class='small fa fa-heart' type='submit'><span><%=comments[i].likes.toString()%></span></button>
-                </form>
-              </div>
-                <% if(comments[i].userId == user.id) { %>
-              <div class=''>
-                <form
-                    action='/comments/deleteComment/<%=post._id%>/<%=comments[i]._id%>?_method=DELETE' method='POST' class=''>
-                    <button class='small fa fa-trash' type='submit'></button>
-                </form>
-                <% } %>
-              </div>
-              </div>
-            </li>
+    <ul class='col-11 off-1 alt'>
+        <li><i class="fas fa-comments"></i></li>
+            <% for(var i=0; i < comments.length; i++) { %>
+                <li class=''>
+                    <div class='row'>
+                        <div class='col-6'>
+                            <p class='no-margin-bottom'>
+                                <strong><%=comments[i].userName%>: </strong><%=comments[i].comment%>
+                            </p>
+                        </div>
+                        <div class=''>
+                            <form 
+                                action='/comments/likeComment/<%=post._id%>/<%=comments[i]._id%>?_method=PUT' 
+                                method='POST' 
+                                class='no-margin-bottom'>
+                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes.toString()%></span></button>
+                            </form>
+                        </div>
+                        <% if(comments[i].userId == user.id) { %>
+                            <div class=''>
+                                <form
+                                    action='/comments/deleteComment/<%=post._id%>/<%=comments[i]._id%>?_method=DELETE' 
+                                    method='POST' 
+                                    class='no-margin-bottom'>
+                                        <button class='button fit vanilla style1' type='submit'><i class='fas fa-trash'></i></button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
+                </li>
             <% } %>
     </ul>
+    <h2 class='col-12'>Add a comment</h2>
+    <form action="/comments/createComment/<%= post._id%>" method="POST" class='col-8'>
+        <div class='fields'>
+            <div class='field'
+                <label for='comment' class='form-label'>Comment</label>
+                <input type='text' class='form-control' id='comment' name='comment'>
+            </div>
+        </div>
+        <button type='submit' class='button' value='Upload'>Submit</button>
+    </form>
 </section>

@@ -1893,6 +1893,9 @@ input, select, textarea {
 
 			ul.alt li {
 				border-top: solid 1px #c9c9c9;
+				padding: 0.05em 0;
+			}
+			ul.alt li p {
 				padding: 0.5em 0;
 			}
 
@@ -2478,6 +2481,14 @@ input, select, textarea {
 		text-transform: uppercase;
 		white-space: nowrap;
 	}
+        .button.vanilla {
+            box-shadow: none;
+            padding: 0;
+        }
+		.button.vanilla:hover {
+			color: #f2849e !important;
+			box-shadow: none;
+		}
 
 		input[type="submit"].icon:before,
 		input[type="reset"].icon:before,
@@ -3333,3 +3344,8 @@ input, select, textarea {
 			}
 
 		}
+
+/* No margin-botton */
+    .no-margin-bottom {
+        margin-bottom: 0;
+    }
