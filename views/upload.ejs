@@ -4,19 +4,23 @@
     <div class="col-10 off-1">
           <div class="">
             <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <form action="/post/createAudioPost" enctype="multipart/form-data" method="POST">
           <div class="fields">
               <div class="field">
                   <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <input type="text" class="form-control" id="title" name="title" required>
               </div>
               <div class="field">
-                <label for="caption" class="form-label">Caption</label>
+                <label for="caption" class="form-label">Caption (optional)</label>
                 <textarea class="form-control" id="caption" name="caption"></textarea>
               </div>
-              <div class="field">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
+              <div class="field half">
+                <label for="audioUpload" class="form-label">Audio</label>
+                <input type="file" class="form-control" id="audioUpload" name="audio" required>
+              </div>
+              <div class="field half">
+                <label for="imgUpload" class="form-label">Image (optional)</label>
+                <input type="file" class="form-control" id="imageUpload" name="customImg">
               </div>
               <div class="field">
               <button type="submit" class="" value="Upload">Submit</button>

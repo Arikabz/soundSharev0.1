@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Audio = require("../models/Audio");
 const Comment = require('../models/Comment')
 const User = require('../models/User')
 
@@ -7,7 +8,8 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user});
+      const audios = await Audio.find({ user: req.user.id });
+      res.render("profile.ejs", {audios: audios, posts: audios, user: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -16,8 +18,9 @@ module.exports = {
     try {
       const user = await User.findById(req.params.id);
       const posts = await Post.find({ user: user.id });
+      const audios = await Audio.find({ user: req.params.id }).sort({createdAt:'desc'}).lean();
         console.log()
-      res.render("profile.ejs", { posts: posts, user: user, currentUser: req.user });
+      res.render("profile.ejs", { audios: audios, posts: posts, user: user, currentUser: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -25,7 +28,9 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts, user: req.user, currentUser: req.user});
+      const audios = await Audio.find().sort({createdAt:'desc'}).lean();
+        console.log(audios)
+      res.render("feed.ejs", { audios: audios, posts: posts, user: req.user, currentUser: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -45,6 +50,37 @@ module.exports = {
   getProfilePictureUpload: (req,res) => {
         res.render('profilePictureUpload.ejs', {currentUser: req.user})
     },
+  createAudio: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+        console.log(req.files)
+        var customImg, customImgCloudinaryId;
+      if(req.files.customImg[0].path){
+        const resultImg = await cloudinary.uploader.upload(req.files.customImg[0].path);
+        customImg = resultImg.secure_url;
+        customImgCloudinaryId = resultImg.public_id;
+
+        }
+      const result = await cloudinary.uploader.upload(req.files.audio[0].path,{resource_type: 'video'});
+
+      await Audio.create({
+        title: req.body.title,
+        audio: result.secure_url,
+        cloudinaryId: result.public_id,
+        caption: req.body.caption,
+        likes: 0,
+        defaultImg: req.user.image,
+        customImg: customImg,
+        customImgCloudinaryId: customImgCloudinaryId,
+        user: req.user.id,
+        userName: req.user.userName,
+      });
+      console.log("Audio has been added!");
+      res.redirect("/profile/"+req.user.id);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary

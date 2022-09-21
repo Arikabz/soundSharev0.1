@@ -1,23 +1,43 @@
 <%- include('partials/header') -%>
   <div id="wrapper">
-  <div id="main">
-  <div class='inner'>
-    <section>
-    <div class="box alt">
-    <div class="row gtr-uniform">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <div class="col-6">
-            <a href="/post/<%= posts[i]._id%>">
-                <span class='image fit'>
-              <img class="" src="<%= posts[i].image%>">
-                </span>
-            </a>
-          </div>
-        <% } %>
-    </div>
-    </div>
-    </section>
-    </div>
+    <div id="main">
+        <div class='inner'>
+            <section>
+                <div class="box alt">
+                    <div class="row gtr-uniform">
+                        <% for(var i=0; i<audios.length; i++) {%>
+                            <div class='col-12 row gtr-uniform aln-center'>
+                                <div class="col-3">
+                                    <a href="/post/<%=audios[i]._id%>">
+                                        <span class='image fit'>
+                                            <% if (audios[i].customImg){ %>
+                                                <img class="" src="<%= audios[i].customImg%>">
+                                            <% } else { %>
+                                                <img class="" src="<%= audios[i].defaultImg%>">
+                                            <% }%>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class='col-9'>
+                                    <h4><%=audios[i].title%>
+                                        <a class='icon brands' href='<%=audios[i].audio%>'>
+                                            <i class='fas fa-download'></i>
+                                        </a>
+                                    </h4>
+                                    <p>by <a href='/profile/<%=audios[i].user%>'><%=audios[i].userName%></a></p>
+                                    <figure>
+                                        <audio
+                                            controls
+                                            src='<%=audios[i].audio%>'>
+                                        </audio>
+                                    </figure>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
   </div>  
 <%- include('partials/footer') -%>

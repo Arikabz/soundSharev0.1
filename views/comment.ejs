@@ -4,12 +4,12 @@
             <% for(var i=0; i < comments.length; i++) { %>
                 <li class=''>
                     <div class='row'>
-                        <div class='col-6'>
+                        <div class='col-8'>
                             <p class='no-margin-bottom'>
                                 <strong><%=comments[i].userName%>: </strong><%=comments[i].comment%>
                             </p>
                         </div>
-                        <div class=''>
+                        <div class='col-2'>
                             <form 
                                 action='/comments/likeComment/<%=post._id%>/<%=comments[i]._id%>?_method=PUT' 
                                 method='POST' 
@@ -18,7 +18,7 @@
                             </form>
                         </div>
                         <% if(comments[i].userId == user.id) { %>
-                            <div class=''>
+                            <div class='col-2'>
                                 <form
                                     action='/comments/deleteComment/<%=post._id%>/<%=comments[i]._id%>?_method=DELETE' 
                                     method='POST' 
@@ -31,14 +31,14 @@
                 </li>
             <% } %>
     </ul>
-    <h2 class='col-12'>Add a comment</h2>
-    <form action="/comments/createComment/<%= post._id%>" method="POST" class='col-8'>
+    <form action="/comments/createComment/<%= post._id%>" method="POST" class='col-12'>
         <div class='fields'>
-            <div class='field'
-                <label for='comment' class='form-label'>Comment</label>
-                <input type='text' class='form-control' id='comment' name='comment'>
+            <div class='field col-12'
+                <label for='comment' class='form-label'><strong>Add a Comment</strong></label>
+                <textarea type='text' class='form-control' id='comment' name='comment' placeholder='Enter your message'>
+                </textarea>
             </div>
         </div>
-        <button type='submit' class='button' value='Upload'>Submit</button>
+        <button type='submit' class='small button' value='Upload'>Submit</button>
     </form>
 </section>

@@ -8,6 +8,9 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 router.get("/:id", ensureAuth, postsController.getPost);
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
+//Audio Post
+const audioUpload = upload.fields([{name: 'audio', maxCount: 1}, {name: 'customImg', maxCount: 1}])
+router.post("/createAudioPost", audioUpload, postsController.createAudio);
 
 router.put("/likePost/:id", postsController.likePost);
 router.post("/updateProfilePicture",upload.single("file"), postsController.updateProfilePicture);
