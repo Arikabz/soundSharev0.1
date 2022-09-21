@@ -16,17 +16,15 @@
     <a href="/upload" class="col-3 button next">Upload</a>
     </div>
     <section class='col-9 row off-1'>
-    <div class=''>
-      <div class="">
-        <ul class="alt col-9 off-3 row">
+    <div class='box alt'>
+      <div class="row gtr-uniform">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-4">
+        <div class='col-4'>
             <a href="/post/<%= posts[i]._id%>">
                 <span class='image fit'><img class="" src="<%= posts[i].image%>"></span>
             </a>
-          </li>
+        </div>
         <% } %>
-        </ul>
       </div>
     </div>
     </section>

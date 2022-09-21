@@ -57,6 +57,7 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         user: req.user.id,
+        userName: req.user.userName,
       });
       console.log("Post has been added!");
       res.redirect("/profile/"+req.user.id);
@@ -68,6 +69,8 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
+
+      await cloudinary.uploader.destroy(req.user.cloudinaryId);
 
       await User.findOneAndUpdate({_id: req.user.id},{
         image: result.secure_url,

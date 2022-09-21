@@ -1,15 +1,23 @@
 <%- include('partials/header') -%>
-  <div class="wrapper">
-    <div class="row">
-      <ul class="alt col-10 row off-1">
+  <div id="wrapper">
+  <div id="main">
+  <div class='inner'>
+    <section>
+    <div class="box alt">
+    <div class="row gtr-uniform">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="off-1 col-5">
+          <div class="col-4">
             <a href="/post/<%= posts[i]._id%>">
-              <img class="image fit" src="<%= posts[i].image%>">
+                <span class='image fit'>
+              <img class="" src="<%= posts[i].image%>">
+                </span>
             </a>
-          </li>
+          </div>
         <% } %>
-        </ul>
+    </div>
+    </div>
+    </section>
+    </div>
     </div>
   </div>  
 <%- include('partials/footer') -%>
