@@ -2369,6 +2369,12 @@ input, select, textarea {
 				}
 
 			}
+        .image.circle img {
+            object-fit: cover;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
 
 /* Table */
 
