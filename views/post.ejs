@@ -3,35 +3,65 @@
     <div id='main'>
         <div class="inner">
             <section>
-                    <div class="box alt">
-            <a class="button col-2" href="/feed">Feed</a>
-                        <div class='row gtr uniform'>
-                            <div class='col-7'>
+                <div class="box alt">
+                    <div class='row gtr-uniform'>
+                        <div class='row gtr-uniform col-7'>
+                            <div class='col-12'>
+                                <a class="button col-2" href="/feed">Feed</a>
                                 <span class='image fit'>
-                                    <img src="<%= post.image%>" />
+                                    <% if (audio.customImg){ %>
+                                        <img class="" src="<%= audio.customImg%>">
+                                    <% } else { %>
+                                        <img class="" src="<%= audio.defaultImg%>">
+                                    <% }%>
                                 </span>
                             </div>
+                            <div class='col-9'>
+                                <h4 class='no-margin-bottom'>
+                                    <a href="/post/<%=audio._id%>">
+                                        <%=audio.title%>
+                                    </a>
+                                    <a class='icon brands' href='<%=audio.audio%>'>
+                                        <i class='fas fa-download'></i>
+                                    </a>
+                                </h4>
+                                <p class='no-margin-bottom'>by 
+                                    <a href='/profile/<%=audio.user%>'>
+                                        <strong><%=audio.userName%></strong>
+                                    </a>
+                                </p>
+                                <figure>
+                                    <audio
+                                        controls
+                                        src='<%=audio.audio%>'>
+                                    </audio>
+                                </figure>
+                            </div>
+                        </div>
                         <div class=' col-5 row'>
-                            <h2 class='col-12 no-margin-bottom'><%= post.title %></h2>
+                            <h2 class='col-12 no-margin-bottom'><%= audio.title %></h2>
                             <p class='col-12'>
                                 <strong>
-                                    <a href='/profile/<%=post.user%>'><%=post.userName%>:</a>
+                                    <a href='/profile/<%=audio.user%>'><%=audio.userName%>:</a>
                                 </strong>
-                                    <span><%= post.caption %></span>
+                                <span><%= audio.caption %></span>
                             </p>
                             <form
-                            class="col-5"
-                            action="/post/likePost/<%= post.id %>?_method=PUT"
-                            method="POST"
+                                class="col-5"
+                                action="/post/likePost/<%= audio.id %>?_method=PUT"
+                                method="POST"
                             >
-                                <button class="small button style1" type="submit"><i class='fas fa-heart'></i><span><%=post.likes%></span></button>
+                                <button class="small button style1" type="submit">
+                                    <i class='fas fa-heart'></i>
+                                    <span><%=audio.likes%></span>
+                                </button>
                             </form>
-                            <%if(post.user == user.id){ %>
+                            <%if(audio.user == user.id){ %>
                                 <form
-                                    action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                                    action="/post/deletePost/<%= audio.id %>?_method=DELETE"
                                     method="POST"
                                     class="col-5"
-                                    >
+                                >
                                     <button class="button small fa fa-trash" type="submit"></button>
                                 </form>
                             <%}%>

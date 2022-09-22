@@ -22,16 +22,16 @@
         <div class='col-12 row gtr-uniform'>
             <div class='col-3'>
                 <a href="/post/<%= audios[i]._id%>" class=''>
-                    <span class='image fit'>
+                    <span class='image square fit'>
                         <% if (audios[i].customImg){ %>
                             <img class="" src="<%= audios[i].customImg%>">
                         <% } else { %>
-                        <img class="" src="<%= audios[i].defaultImg%>">
+                            <img class="" src="<%= audios[i].defaultImg%>">
                         <% }%>
                     </span>
                 </a>
             </div>
-            <div class='col-9'>
+            <div class='col-8 off-1'>
                 <h4><%=audios[i].title%>
                 <a class='icon brands' href='<%=audios[i].audio%>'>
                     <i class='fas fa-download'></i>

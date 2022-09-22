@@ -4,23 +4,23 @@
             <% for(var i=0; i < comments.length; i++) { %>
                 <li class=''>
                     <div class='row'>
-                        <div class='col-8'>
+                        <div class='col-7'>
                             <p class='no-margin-bottom'>
                                 <strong><%=comments[i].userName%>: </strong><%=comments[i].comment%>
                             </p>
                         </div>
-                        <div class='col-2'>
+                        <div class='col-3'>
                             <form 
-                                action='/comments/likeComment/<%=post._id%>/<%=comments[i]._id%>?_method=PUT' 
+                                action='/comments/likeComment/<%=audio._id%>/<%=comments[i]._id%>?_method=PUT' 
                                 method='POST' 
                                 class='no-margin-bottom'>
-                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes.toString()%></span></button>
+                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes%></span></button>
                             </form>
                         </div>
                         <% if(comments[i].userId == user.id) { %>
                             <div class='col-2'>
                                 <form
-                                    action='/comments/deleteComment/<%=post._id%>/<%=comments[i]._id%>?_method=DELETE' 
+                                    action='/comments/deleteComment/<%=audio._id%>/<%=comments[i]._id%>?_method=DELETE' 
                                     method='POST' 
                                     class='no-margin-bottom'>
                                         <button class='button fit vanilla style1' type='submit'><i class='fas fa-trash'></i></button>
@@ -31,7 +31,7 @@
                 </li>
             <% } %>
     </ul>
-    <form action="/comments/createComment/<%= post._id%>" method="POST" class='col-12'>
+    <form action="/comments/createComment/<%=audio._id%>" method="POST" class='col-12'>
         <div class='fields'>
             <div class='field col-12'
                 <label for='comment' class='form-label'><strong>Add a Comment</strong></label>

@@ -9,7 +9,7 @@
                             <div class='col-12 row gtr-uniform aln-center'>
                                 <div class="col-3">
                                     <a href="/post/<%=audios[i]._id%>">
-                                        <span class='image fit'>
+                                        <span class='image square fit'>
                                             <% if (audios[i].customImg){ %>
                                                 <img class="" src="<%= audios[i].customImg%>">
                                             <% } else { %>
@@ -19,12 +19,15 @@
                                     </a>
                                 </div>
                                 <div class='col-9'>
-                                    <h4><%=audios[i].title%>
+                                    <h4 class='no-margin-bottom'>
+                                    <a href="/post/<%=audios[i]._id%>">
+                                    <%=audios[i].title%>
+                                    </a>
                                         <a class='icon brands' href='<%=audios[i].audio%>'>
                                             <i class='fas fa-download'></i>
                                         </a>
                                     </h4>
-                                    <p>by <a href='/profile/<%=audios[i].user%>'><%=audios[i].userName%></a></p>
+                                    <p class='no-margin-bottom'>by <a href='/profile/<%=audios[i].user%>'><strong><%=audios[i].userName%></strong></a></p>
                                     <figure>
                                         <audio
                                             controls

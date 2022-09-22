@@ -12,7 +12,7 @@ router.post("/createPost", upload.single("file"), postsController.createPost);
 const audioUpload = upload.fields([{name: 'audio', maxCount: 1}, {name: 'customImg', maxCount: 1}])
 router.post("/createAudioPost", audioUpload, postsController.createAudio);
 
-router.put("/likePost/:id", postsController.likePost);
+router.put("/likePost/:id", postsController.likeAudioPost);
 router.post("/updateProfilePicture",upload.single("file"), postsController.updateProfilePicture);
 
 router.delete("/deletePost/:id", postsController.deletePost);
