@@ -32,7 +32,10 @@
                 </a>
             </div>
             <div class='col-8 off-1'>
-                <h4><%=audios[i].title%>
+                <h4>
+                <a href="/post/<%= audios[i]._id%>" class=''>
+                    <%=audios[i].title%>
+                </a>
                 <a class='icon brands' href='<%=audios[i].audio%>'>
                     <i class='fas fa-download'></i>
                 </a>

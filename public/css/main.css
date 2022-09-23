@@ -2378,6 +2378,12 @@ input, select, textarea {
             height: 150px;
             border-radius: 50%;
         }
+        .image.circle.small img {
+            object-fit: cover;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 20%;
+        }
         .image.square img {
             object-fit: cover;
             width: 120px;

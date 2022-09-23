@@ -7,6 +7,7 @@ module.exports = {
             await Comment.create({
                 userId: req.user.id,
                 userName: req.user.userName,
+                userImg: req.user.image,
                 comment: req.body.comment,
                 likes: 0,
                 post: req.params.id,

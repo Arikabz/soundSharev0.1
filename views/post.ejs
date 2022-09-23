@@ -38,16 +38,16 @@
                                 </figure>
                             </div>
                         </div>
-                        <div class=' col-5 row'>
+                        <div class='col-5 row'>
                             <h2 class='col-12 no-margin-bottom'><%= audio.title %></h2>
-                            <p class='col-12'>
+                            <p class='col-12 no-margin-bottom'>
                                 <strong>
                                     <a href='/profile/<%=audio.user%>'><%=audio.userName%>:</a>
                                 </strong>
                                 <span><%= audio.caption %></span>
                             </p>
                             <form
-                                class="col-5"
+                                class="col-5 no-margin-bottom"
                                 action="/post/likePost/<%= audio.id %>?_method=PUT"
                                 method="POST"
                             >
@@ -60,7 +60,7 @@
                                 <form
                                     action="/post/deletePost/<%= audio.id %>?_method=DELETE"
                                     method="POST"
-                                    class="col-5"
+                                    class="col-5 no-margin-bottom"
                                 >
                                     <button class="button small fa fa-trash" type="submit"></button>
                                 </form>

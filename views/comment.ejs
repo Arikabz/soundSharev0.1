@@ -4,9 +4,10 @@
             <% for(var i=0; i < comments.length; i++) { %>
                 <li class=''>
                     <div class='row'>
-                        <div class='col-7'>
+                        <div class='col-6'>
                             <p class='no-margin-bottom'>
-                                <strong><%=comments[i].userName%>: </strong><%=comments[i].comment%>
+                            <span class='image circle small'><img src='<%=comments[i].userImg%>'></span>
+                                <strong><a href='/profile/<%=comments[i].userId%>'><%=comments[i].userName%>: </strong></a><%=comments[i].comment%>
                             </p>
                         </div>
                         <div class='col-3'>
