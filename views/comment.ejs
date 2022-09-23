@@ -3,23 +3,24 @@
         <li><i class="fas fa-comments"></i></li>
             <% for(var i=0; i < comments.length; i++) { %>
                 <li class=''>
-                    <div class='row'>
-                        <div class='col-6'>
+                    <div class='row aln-left'>
+                        <% if(comments[i].userId == currentUser.id) { %>
+                        <div class='col-7'>
+                        <% } else{ %>
+                        <div class='col-9'>
+                        <% } %>
                             <p class='no-margin-bottom'>
-                            <span class='image circle small'><img src='<%=comments[i].userImg%>'></span>
+                            <span class='image square small'><img src='<%=comments[i].userImg%>'></span>
                                 <strong><a href='/profile/<%=comments[i].userId%>'><%=comments[i].userName%>: </strong></a><%=comments[i].comment%>
                             </p>
                         </div>
-                        <div class='col-3'>
-                            <form 
-                                action='/comments/likeComment/<%=audio._id%>/<%=comments[i]._id%>?_method=PUT' 
-                                method='POST' 
-                                class='no-margin-bottom'>
-                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes%></span></button>
-                            </form>
-                        </div>
-                        <% if(comments[i].userId == user.id) { %>
-                            <div class='col-2'>
+                        <% if(comments[i].userId == currentUser.id) { %>
+                        <div class='col-5 row aln-right'>
+                        <% } else{ %>
+                        <div class='col-3 row aln-left'>
+                        <% } %>
+                        <% if(comments[i].userId == currentUser.id) { %>
+                            <div class='col-5'>
                                 <form
                                     action='/comments/deleteComment/<%=audio._id%>/<%=comments[i]._id%>?_method=DELETE' 
                                     method='POST' 
@@ -28,6 +29,19 @@
                                 </form>
                             </div>
                         <% } %>
+                        <% if(comments[i].userId == currentUser.id) { %>
+                        <div class='col-7'>
+                        <% } else{ %>
+                        <div class='col-12 aln-middle no-padding-left'>
+                        <% } %>
+                            <form 
+                                action='/comments/likeComment/<%=audio._id%>/<%=comments[i]._id%>?_method=PUT' 
+                                method='POST' 
+                                class='no-margin-bottom'>
+                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes%></span></button>
+                            </form>
+                        </div>
+                        </div>
                     </div>
                 </li>
             <% } %>

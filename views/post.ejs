@@ -12,7 +12,7 @@
                                     <% if (audio.customImg){ %>
                                         <img class="" src="<%= audio.customImg%>">
                                     <% } else { %>
-                                        <img class="" src="<%= audio.defaultImg%>">
+                                        <img class="" src="<%= postUser.image%>">
                                     <% }%>
                                 </span>
                             </div>
@@ -40,6 +40,7 @@
                         </div>
                         <div class='col-5 row'>
                             <h2 class='col-12 no-margin-bottom'><%= audio.title %></h2>
+                            <span class='image circle medium round'><img src='<%=postUser.image%>'></span>
                             <p class='col-12 no-margin-bottom'>
                                 <strong>
                                     <a href='/profile/<%=audio.user%>'><%=audio.userName%>:</a>
@@ -56,7 +57,7 @@
                                     <span><%=audio.likes%></span>
                                 </button>
                             </form>
-                            <%if(audio.user == user.id){ %>
+                            <%if(audio.user == currentUser.id){ %>
                                 <form
                                     action="/post/deletePost/<%= audio.id %>?_method=DELETE"
                                     method="POST"

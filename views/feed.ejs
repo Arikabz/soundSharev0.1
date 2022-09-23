@@ -5,7 +5,9 @@
             <section>
                 <div class="box alt">
                     <div class="row gtr-uniform">
+                        <ul class='alt col-8'>
                         <% for(var i=0; i<audios.length; i++) {%>
+                            <li class='col-12 gtr-uniform row aln-center'>
                             <div class='col-12 row gtr-uniform aln-center'>
                                 <div class="col-3">
                                     <a href="/post/<%=audios[i]._id%>">
@@ -27,7 +29,11 @@
                                             <i class='fas fa-download'></i>
                                         </a>
                                     </h4>
-                                    <p class='no-margin-bottom'>by <a href='/profile/<%=audios[i].user%>'><strong><%=audios[i].userName%></strong></a></p>
+                                    <p class='no-margin-bottom'>by 
+                                    <a href='/profile/<%=audios[i].user%>'>
+                                    <strong><%=audios[i].userName%></strong></a>
+                                    <span class='image square small'><img src='<%=audios[i].defaultImg%>'></span>
+                                    </p>
                                     <figure>
                                         <audio
                                             controls
@@ -36,7 +42,9 @@
                                     </figure>
                                 </div>
                             </div>
+                            </li>
                         <% } %>
+                        </ul>
                     </div>
                 </div>
             </section>

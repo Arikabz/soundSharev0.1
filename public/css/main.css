@@ -2384,10 +2384,16 @@ input, select, textarea {
             height: 3em;
             border-radius: 20%;
         }
-        .image.circle.small img {
+        .image.circle.medium.round img {
             object-fit: cover;
-            width: 1.5em;
-            height: 1.5em;
+            width: 3em;
+            height: 3em;
+            border-radius: 50%;
+        }
+        .image.square.small img {
+            object-fit: cover;
+            width: 1.1em;
+            height: 1.1em;
             border-radius: 20%;
         }
         .image.square img {
@@ -3387,4 +3393,9 @@ input, select, textarea {
     .blank-space5 {
         height: 5vh;
         background-color: #ffffff;
+    }
+
+/* No padding left */
+    .no-padding-left {
+        padding-left: 0;
     }

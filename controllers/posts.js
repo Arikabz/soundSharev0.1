@@ -7,9 +7,8 @@ const User = require('../models/User')
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
       const audios = await Audio.find({ user: req.user.id });
-      res.render("profile.ejs", {audios: audios, posts: audios, user: req.user});
+      res.render("profile.ejs", {audios: audios, user: req.user});
     } catch (err) {
       console.log(err);
     }
@@ -17,30 +16,43 @@ module.exports = {
   getProfileById: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
-      const posts = await Post.find({ user: user.id });
       const audios = await Audio.find({ user: req.params.id }).sort({createdAt:'desc'}).lean();
         console.log()
-      res.render("profile.ejs", { audios: audios, posts: posts, user: user, currentUser: req.user });
+      res.render("profile.ejs", { audios: audios, user: user, currentUser: req.user });
     } catch (err) {
       console.log(err);
     }
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
       const audios = await Audio.find().sort({createdAt:'desc'}).lean();
-        console.log(audios)
-      res.render("feed.ejs", { audios: audios, posts: posts, user: req.user, currentUser: req.user});
+      let aUserIds = audios.map(x=> x.user)
+      await Promise.all(aUserIds.map(x=>{
+                return User.findById(x)
+            })).then((values)=>{
+                    values.forEach((x,i)=>{
+                        audios[i].defaultImg = x.image;
+                    })
+                })
+      res.render("feed.ejs", { audios: audios,  user: req.user, currentUser: req.user});
     } catch (err) {
       console.log(err);
     }
   },
   getPost: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
       const audio = await Audio.findById(req.params.id);
+      const postUser = await User.findById(audio.user)
       const comments = await Comment.find({post: req.params.id}).sort({ createdAt: 'asc'}).lean();
-      res.render("post.ejs", { audio: audio, post: post, user: req.user, comments: comments, currentUser: req.user});
+      let cUserIds = comments.map(x=> x.userId)
+      await Promise.all(cUserIds.map(x=>{
+                return User.findById(x)
+            })).then((values)=>{
+                    values.forEach((x,i)=>{
+                        comments[i].userImg = x.image;
+                    })
+                })
+      res.render("post.ejs", { audio: audio, postUser: postUser,  comments: comments, currentUser: req.user});
     } catch (err) {
       console.log(err);
     }
