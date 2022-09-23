@@ -3,7 +3,7 @@
 <div id="wrapper">
 <footer id="footer">
   <div class="inner">
-    <section class="">
+    <section class="with-margin-bottom">
       <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
       <div class="alert alert-danger"><%= el.msg %></div>
       <% }) %> <% } %> <% if (locals.messages.info) { %> <%
@@ -40,5 +40,6 @@
   </div>
 </footer>
 </div>
+<div class='blank-space20'><p></p></div>
 
 <%- include('partials/footer') -%>
