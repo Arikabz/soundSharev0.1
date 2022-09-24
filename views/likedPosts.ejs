@@ -1,9 +1,8 @@
-            <section>
                 <h1>Liked Posts</h1>
                 <div class="box alt">
                     <div class="row gtr-uniform">
                         <ul class='alt col-8'>
-                        <% for(var i=0; i<likedAudios.length; i++) {%>
+                        <% for(var i=likedAudios.length-1; i>=0; i--) {%>
                             <li class='col-12 gtr-uniform row aln-center'>
                             <div class='col-12 row gtr-uniform aln-center'>
                                 <div class="col-3">
@@ -22,7 +21,7 @@
                                     <a href="/post/<%=likedAudios[i]._id%>">
                                     <%=likedAudios[i].title%>
                                     </a>
-                                        <a class='icon brands' href='<%=likedAudios[i].audio%>' download='<%=audios[i].title%>'>
+                                        <a class='icon brands' href='<%=likedAudios[i].audio%>' download='<%=likedAudios[i].title%>'>
                                             <i class='fas fa-download'></i>
                                         </a>
                                     </h4>
@@ -44,4 +43,3 @@
                         </ul>
                     </div>
                 </div>
-            </section>
