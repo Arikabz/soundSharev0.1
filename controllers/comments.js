@@ -20,10 +20,18 @@ module.exports = {
     },
     likeComment: async (req, res) => {
         try {
+            const comment = await Comment.findById(req.params.commentId);
+            let newArr = comment.likedBy;
+            if(newArr.includes(req.user.id)){
+                newArr.splice(newArr.indexOf(req.user.id));
+            } else{
+                newArr.push(req.user.id)
+            }
             await Comment.findOneAndUpdate(
                 { _id: req.params.commentId },
                 {
-                    $inc: { likes: 1},
+                    likedBy: newArr,
+                    likes: newArr.length,
                 }
             );
             console.log('Comment likes + 1');

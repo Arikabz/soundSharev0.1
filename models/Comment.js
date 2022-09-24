@@ -21,6 +21,10 @@ const CommentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  likedBy: {
+    type: Array,
+    required: true,
+  },
   post: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post",

@@ -38,7 +38,12 @@
                                 action='/comments/likeComment/<%=audio._id%>/<%=comments[i]._id%>?_method=PUT' 
                                 method='POST' 
                                 class='no-margin-bottom'>
-                                    <button class='button fit vanilla style1' type='submit'><i class='fas fa-heart'></i><span><%=comments[i].likes%></span></button>
+                                <% if(comments[i].likedBy.includes(currentUser.id)) { %>
+                                    <button class='button fit liked vanilla style1' type='submit'>
+                                <% } else { %>
+                                    <button class='button fit vanilla style1' type='submit'>
+                                <% } %>
+                                    <i class='fas fa-heart'></i><span><%=comments[i].likes%></span></button>
                             </form>
                         </div>
                         </div>
