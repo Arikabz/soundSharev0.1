@@ -22,6 +22,10 @@ const AudioSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  likedBy: {
+    type: Array,
+    required: true,
+  },
   defaultImg: {
     type: String,
     required: true,

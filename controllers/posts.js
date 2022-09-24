@@ -109,6 +109,7 @@ module.exports = {
         cloudinaryId: result.public_id,
         caption: req.body.caption,
         likes: 0,
+        likedBy: [],
         user: req.user.id,
         userName: req.user.userName,
       });
@@ -181,13 +182,35 @@ module.exports = {
   },
   likeAudioPost: async (req, res) => {
     try {
+            if(req.user.likedPosts.includes(req.params.id)){
+                let newArr = req.user.likedPosts;
+                newArr.splice(newArr.indexOf(req.params.id))
+                await User.findOneAndUpdate({_id: req.user.id},{
+                    likedPosts: newArr,
+                })
+            } else {
+                let update = req.user.likedPosts
+                update.push(req.params.id)
+                await User.findOneAndUpdate({_id: req.user.id},{
+                    likedPosts: update,
+                })
+            }
+      const audio = await Audio.findById(req.params.id);
+        let newArr = audio.likedBy;
+        if(audio.likedBy.includes(req.user.id)){
+                newArr.splice(newArr.indexOf(req.user.id));
+            } else{
+                newArr.push(req.user.id)
+            }
       await Audio.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          likes: newArr.length,
+          likedBy: newArr,
         }
       );
-      console.log("Likes +1");
+      console.log("Liked and saved");
+      console.log("saved post:"+req.user.likedPosts);
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);

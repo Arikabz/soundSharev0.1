@@ -48,29 +48,33 @@
                                 <span><%= audio.caption %></span>
                             </p>
                             <form
-                                class="col-5 no-margin-bottom"
+                                class="col-4 no-margin-bottom"
                                 action="/post/likePost/<%= audio.id %>?_method=PUT"
                                 method="POST"
                             >
+                                <% if(audio.likedBy.includes(currentUser.id)){%>
+                                <button class="small button style1 liked" type="submit">
+                                <% } else { %>
                                 <button class="small button style1" type="submit">
+                                <% } %>
                                     <i class='fas fa-heart'></i>
                                     <span><%=audio.likes%></span>
                                 </button>
                             </form>
                             <%if(audio.user == currentUser.id){ %>
                                 <form
-                                    action="/post/deletePost/<%= audio.id %>?_method=DELETE"
-                                    method="POST"
-                                    class="col-5 no-margin-bottom"
-                                >
-                                    <button class="button small fa fa-trash" type="submit"></button>
-                                </form>
-                                <form
                                     action="/post/getUpdatePost/<%= audio.id %>?_method=GET"
                                     method="GET"
-                                    class="col-5 no-margin-bottom"
+                                    class="col-3 no-margin-bottom"
                                 >
-                                    <button class="button small fa fa-pen-to-square" type="submit"></button>
+                                    <button class="button small fa fa-pen" type="submit"></button>
+                                </form>
+                                <form
+                                    action="/post/deletePost/<%= audio.id %>?_method=DELETE"
+                                    method="POST"
+                                    class="col-3 no-margin-bottom"
+                                >
+                                    <button class="button small fa fa-trash" type="submit"></button>
                                 </form>
                             <%}%>
                             <%- include('comment', {comments}); %>

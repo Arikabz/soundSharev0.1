@@ -2398,8 +2398,8 @@ input, select, textarea {
         }
         .image.square img {
             object-fit: cover;
-            width: 120px;
-            height: 120px;
+            width: 7em;
+            height: 7em;
             border-radius: 5%;
         }
 
@@ -3398,4 +3398,10 @@ input, select, textarea {
 /* No padding left */
     .no-padding-left {
         padding-left: 0;
+    }
+
+/* Liked Post */
+    .liked {
+		color: #f2849e !important ;
+		/*background-color: rgba(242, 132, 158, 0.1);*/
     }

@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
+  likedPosts: {
+    type: Array,
+    require: true,
+  },
 });
 
 // Password hash middleware.
