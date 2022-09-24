@@ -63,6 +63,10 @@ module.exports = {
   getProfilePictureUpload: (req,res) => {
         res.render('profilePictureUpload.ejs', {currentUser: req.user})
     },
+  getPostUpdate: async (req,res) => {
+        const audio = await Audio.findById(req.params.id);
+        res.render('updateAudioPost.ejs', {currentUser: req.user, audio: audio})
+    },
   createAudio: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -110,6 +114,48 @@ module.exports = {
       });
       console.log("Post has been added!");
       res.redirect("/profile/"+req.user.id);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  updateAudioPostTest: async (req,res) =>{
+    console.log(req.body.caption.trim())
+  },
+  updateAudioPost: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+      const audio = await Audio.findById(req.params.id)
+      //const result = await cloudinary.uploader.upload(req.file.path);
+            console.log(req.body)
+        let title = audio.title,
+            caption = audio.title,
+            formCaption = req.body.caption.trim()
+
+        if(req.body.title!=title){
+           title = req.body.title;
+        }
+        if(caption!=formCaption){
+           caption = formCaption; 
+        }
+        if(req.file){
+            await cloudinary.uploader.destroy(audio.customImgCloudinaryId);
+            const newImg = await cloudinary.uploader.upload(req.file.path)
+                console.log(newImg)
+            await Audio.findOneAndUpdate({_id: req.params.id},{
+                title: title,
+                caption: caption,
+                customImg: newImg.secure_url,
+                customImgCloudinaryId: newImg.public_id,
+            });
+        } else {
+            await Audio.findOneAndUpdate({_id: req.params.id},{
+                title: title,
+                caption: caption,
+            });
+            }
+
+      console.log("Audio post has been updated!");
+      res.redirect("/post/"+ req.params.id);
     } catch (err) {
       console.log(err);
     }

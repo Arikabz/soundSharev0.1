@@ -28,6 +28,7 @@ app.set("view engine", "ejs");
 //Static Folder
 app.use(express.static("public"));
 app.use('/post', express.static(path.join(__dirname, 'public')))
+app.use('/post/getUpdatePost', express.static(path.join(__dirname, 'public')))
 app.use('/profile', express.static(path.join(__dirname, 'public')))
 
 //Body Parsing
