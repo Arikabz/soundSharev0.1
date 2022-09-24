@@ -17,8 +17,14 @@ module.exports = {
     try {
       const user = await User.findById(req.params.id);
       const audios = await Audio.find({ user: req.params.id }).sort({createdAt:'desc'}).lean();
+      let likedAudios;
+      await Promise.all(user.likedPosts.map(x=>{
+                return Audio.findById(x);
+            })).then((values)=>{
+                likedAudios = values;
+                    })
         console.log()
-      res.render("profile.ejs", { audios: audios, user: user, currentUser: req.user });
+      res.render("profile.ejs", { audios: audios, likedAudios: likedAudios, user: user, currentUser: req.user });
     } catch (err) {
       console.log(err);
     }

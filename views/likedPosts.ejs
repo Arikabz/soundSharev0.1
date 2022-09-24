@@ -1,0 +1,47 @@
+            <section>
+                <h1>Liked Posts</h1>
+                <div class="box alt">
+                    <div class="row gtr-uniform">
+                        <ul class='alt col-8'>
+                        <% for(var i=0; i<likedAudios.length; i++) {%>
+                            <li class='col-12 gtr-uniform row aln-center'>
+                            <div class='col-12 row gtr-uniform aln-center'>
+                                <div class="col-3">
+                                    <a href="/post/<%=likedAudios[i]._id%>">
+                                        <span class='image square fit'>
+                                            <% if (likedAudios[i].customImg!='none'){ %>
+                                                <img class="" src="<%= likedAudios[i].customImg%>">
+                                            <% } else { %>
+                                                <img class="" src="<%= likedAudios[i].defaultImg%>">
+                                            <% }%>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class='col-9'>
+                                    <h4 class='no-margin-bottom'>
+                                    <a href="/post/<%=likedAudios[i]._id%>">
+                                    <%=likedAudios[i].title%>
+                                    </a>
+                                        <a class='icon brands' href='<%=likedAudios[i].audio%>' download='<%=audios[i].title%>'>
+                                            <i class='fas fa-download'></i>
+                                        </a>
+                                    </h4>
+                                    <p class='no-margin-bottom'>by 
+                                    <a href='/profile/<%=likedAudios[i].user%>'>
+                                    <strong><%=likedAudios[i].userName%></strong></a>
+                                    <span class='image square small'><img src='<%=likedAudios[i].defaultImg%>'></span>
+                                    </p>
+                                    <figure>
+                                        <audio
+                                            controls
+                                            src='<%=likedAudios[i].audio%>'>
+                                        </audio>
+                                    </figure>
+                                </div>
+                            </div>
+                            </li>
+                        <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </section>
