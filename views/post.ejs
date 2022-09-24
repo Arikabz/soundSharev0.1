@@ -9,7 +9,7 @@
                             <div class='col-12'>
                                 <a class="button col-2" href="/feed">Feed</a>
                                 <span class='image fit'>
-                                    <% if (audio.customImg){ %>
+                                    <% if (audio.customImg!='none'){ %>
                                         <img class="" src="<%= audio.customImg%>">
                                     <% } else { %>
                                         <img class="" src="<%= postUser.image%>">

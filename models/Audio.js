@@ -28,11 +28,11 @@ const AudioSchema = new mongoose.Schema({
   },
   customImg: {
     type: String,
-    required: false,
+    required: true,
   },
   customImgCloudinaryId: {
     type: String,
-    required: false,
+    required: true,
   },
   tags: {
     type: Array,

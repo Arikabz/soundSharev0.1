@@ -71,7 +71,7 @@ module.exports = {
     try {
       // Upload image to cloudinary
         console.log(req.files)
-        var customImg, customImgCloudinaryId;
+        var customImg='none', customImgCloudinaryId='none';
       if(req.files.customImg){
         const resultImg = await cloudinary.uploader.upload(req.files.customImg[0].path);
         customImg = resultImg.secure_url;
