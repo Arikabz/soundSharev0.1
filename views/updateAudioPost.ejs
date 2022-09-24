@@ -1,0 +1,33 @@
+<%- include('partials/header') -%>
+<div class='wrapper '>
+<div class='row'>
+    <div class="col-10 off-1">
+          <div class="">
+            <h2>Edit post</h2>
+            <form action="/post/updateAudioPost/<%=audio.id%>?_method=PUT" enctype="multipart/form-data" method="POST">
+          <div class="fields">
+              <div class="field">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" name="title" value='<%=audio.title%>'>
+              </div>
+              <div class="field">
+                <label for="caption" class="form-label">Caption</label>
+                <textarea class="form-control" id="caption" name="caption">
+                <%=audio.caption%>
+                </textarea>
+              </div>
+              <div class="field half">
+                <label for="imgUpload" class="form-label">New Image</label>
+                <input type="file" class="form-control" id="imageUpload" name="customImg">
+              </div>
+              <div class="field">
+              <button type="submit" class="form-control" value="Upload">Submit</button>
+              </div>
+              </div>
+            </form>
+          </div>
+    </div>
+</div>
+</div>
+<div class='blank-space15'></div>
+<%- include('partials/footer') -%>
