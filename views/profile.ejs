@@ -6,14 +6,17 @@
     <div class='col-3'>
         <span class='image circle fit'><img class="" src="<%=user.image%>"></span>
         <% if(user.id===currentUser.id) {%>
-        <a href='/profilePictureUpdate' class='button small'>edit</a>
+        <a href='/profilePictureUpdate' class='button small'>Edit Picture</a>
         <% } %>
     <p><strong><%= user.userName %></strong></p>
         <% if(user.id===currentUser.id) {%>
     <p><strong>Email</strong>: <%= user.email %></p>
+    <a href="/logout" class="col-3 button small">Logout</a>
+    <a href="/upload" class="col-3 button small">Upload</a>
         <% } %>
-    <a href="/logout" class="col-3 button next">Logout</a>
-    <a href="/upload" class="col-3 button next">Upload</a>
+    <section class='col-3'>
+    <%- include('likedPosts', {likedAudios}); -%>
+    </section>
     </div>
     <section class='col-8 row off-1'>
     <div class='box alt'>
@@ -49,11 +52,11 @@
             </div>
         </div>
         <% } %>
+        <% if(audios.length==0){ %>
+            <h2>No audios yet</h2>
+        <% } %>
       </div>
     </div>
-    </section>
-    <section class='col-3'>
-    <%- include('likedPosts', {likedAudios}); -%>
     </section>
 </div>
         <div class="row aln-center">
