@@ -20,9 +20,9 @@
     </div>
     <section class='col-8 row off-1'>
     <div class='box alt'>
-      <div class="row gtr-uniform">
+      <ul class="alt row gtr-uniform">
         <% for(var i=0; i<audios.length; i++) {%>
-        <div class='col-12 row gtr-uniform'>
+        <li class='col-12 row gtr-uniform'>
             <div class='col-3'>
                 <a href="/post/<%= audios[i]._id%>" class=''>
                     <span class='image square fit'>
@@ -50,12 +50,12 @@
                 </audio>
                 </figure>
             </div>
-        </div>
+        </li>
         <% } %>
         <% if(audios.length==0){ %>
             <h2>No audios yet</h2>
         <% } %>
-      </div>
+      </ul>
     </div>
     </section>
 </div>
