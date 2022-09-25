@@ -3410,9 +3410,9 @@ input, select, textarea {
 
 /* Small Audio Player */
     .audio-player {
-        --player-button-width: 5em;
-        width: 5em;
-        height: 5em;
+        --player-button-width: 3.8em;
+        width: 3em;
+        height: 3em;
     }
     
     .icon-container {
@@ -3431,14 +3431,23 @@ input, select, textarea {
     }
 
     .controls {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        position: relative;
         width: 100%;
-        margin-top: 10px;
+    }
+
+    .controls img {
+        object-fit: cover;
+        width: 3em;
+        height: 3em;
+        border-radius: 10%;
     }
     
     .player-button {
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
         background-color: transparent;
         color: black;
         border: 0;
@@ -3446,4 +3455,29 @@ input, select, textarea {
         height: var(--player-button-width);
         cursor: pointer;
         padding: 0;
+    }
+
+    .player-button i {
+        font-size: 1.5em;
+    }
+
+    .likedPosts h2 {
+        font-size: 0.7em;
+    }
+
+    .likedPosts h5 {
+        font-size: 0.5em;
+    }
+
+    .likedPosts p {
+        font-size: 0.7em;
+    }
+
+    .li-mb {
+        margin-bottom: 1em;
+    }
+
+    .scrollable-list {
+        overflow-y:scroll;
+        height: 15em;
     }

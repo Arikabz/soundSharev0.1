@@ -18,9 +18,14 @@ module.exports = {
 			const user = await User.findById(request.params.id);
 			const audios = await Audio.find({user: request.params.id}).sort({createdAt: 'desc'}).lean();
 			let likedAudios;
-			await Promise.all(user.likedPosts.map(x => Audio.findById(x))).then(values => {
+			await Promise.all(user.likedPosts.map(x => Audio.findById(x))).then(async values => {
 				likedAudios = values;
                 console.log(likedAudios)
+			await Promise.all(likedAudios.map(x => User.findById(x.user))).then(values => {
+                values.forEach((x,i) =>{
+					likedAudios[i].defaultImg = x.image;
+				})
+			});
 			});
 			console.log();
 			res.render('profile.ejs', {audios, likedAudios, user, currentUser: request.user});

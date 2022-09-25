@@ -1,46 +1,42 @@
-                <h1>Liked Posts</h1>
-                <div class="box alt">
-                    <div class="row gtr-uniform">
-                        <ul class='alt col-12'>
-                        <% for(var i=likedAudios.length-1; i>=0; i--) {%>
-                            <li class='col-12 gtr-uniform row aln-center'>
-                            <div class='col-12 row gtr-uniform aln-center'>
-                                <div class="col-3">
-                                        <div class='audio-player'>
-                                        <div class='icon-container'>
-                                            <% if (likedAudios[i].customImg!='none'){ %>
-                                                <img class="audio-icon" src="<%= likedAudios[i].customImg%>">
-                                            <% } else { %>
-                                                <img class="audio-icon" src="<%= likedAudios[i].defaultImg%>">
-                                            <% }%>
-                                        </div>
-                                        <audio src='<%=likedAudios[i].audio%>'>
-                                        </audio>
-                                            <div class='controls'>
-                                                <button class='player-button vanilla'>
-                                                    <i class='fas fa-play-circle'></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class='col-9'>
-                                    <h4 class='no-margin-bottom'>
-                                    <a href="/post/<%=likedAudios[i]._id%>">
-                                    <%=likedAudios[i].title%>
-                                    </a>
-                                        <a class='icon brands' href='<%=likedAudios[i].audio%>' download='<%=likedAudios[i].title%>'>
-                                            <i class='fas fa-download'></i>
-                                        </a>
-                                    </h4>
-                                    <p class='no-margin-bottom'>by 
-                                    <a href='/profile/<%=likedAudios[i].user%>'>
-                                    <strong><%=likedAudios[i].userName%></strong></a>
-                                    <span class='image square small'><img src='<%=likedAudios[i].defaultImg%>'></span>
-                                    </p>
+<h2>Liked Posts</h2>
+<div class="box alt likedPosts">
+    <div class="row gtr-uniform">
+        <ul class='alt col-12 scrollable-list'>
+            <% for(var i=likedAudios.length-1; i>=0; i--) {%>
+                <li class='col-12 gtr-uniform li-mb'>
+                    <div class='row gtr-uniform aln-center'>
+                        <div class="col-3">
+                            <div class='audio-player'>
+                                <audio src='<%=likedAudios[i].audio%>'>
+                                </audio>
+                                <div class='controls'>
+                                    <% if (likedAudios[i].customImg!='none'){ %>
+                                        <img class="" src="<%= likedAudios[i].customImg%>">
+                                    <% } else { %>
+                                        <img class="" src="<%= likedAudios[i].defaultImg%>">
+                                    <% }%>
+                                        <button class='player-button vanilla'>
+                                            <i class='fas fa-play-circle'></i>
+                                        </button>
                                 </div>
                             </div>
-                            </li>
-                        <% } %>
-                        </ul>
+                        </div>
+                        <div class='col-8 off-1'>
+                            <h5 class='no-margin-bottom'>
+                                <a href="/post/<%=likedAudios[i]._id%>">
+                                    <%=likedAudios[i].title%>
+                                </a>
+                            </h5>
+                            <p class='no-margin-bottom'>by 
+                                <a href='/profile/<%=likedAudios[i].user%>'>
+                                    <strong><%=likedAudios[i].userName%></strong>
+                                </a>
+                                <span class='image square small'><img src='<%=likedAudios[i].defaultImg%>'></span>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
