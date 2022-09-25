@@ -3,7 +3,7 @@
 <div class="main">
 <div class='inner'>
 <div class='row'>
-    <div class='col-2'>
+    <div class='col-3'>
         <span class='image circle fit'><img class="" src="<%=user.image%>"></span>
         <% if(user.id===currentUser.id) {%>
         <a href='/profilePictureUpdate' class='button small'>edit</a>
@@ -15,7 +15,7 @@
     <a href="/logout" class="col-3 button next">Logout</a>
     <a href="/upload" class="col-3 button next">Upload</a>
     </div>
-    <section class='col-9 row off-1'>
+    <section class='col-8 row off-1'>
     <div class='box alt'>
       <div class="row gtr-uniform">
         <% for(var i=0; i<audios.length; i++) {%>
@@ -52,7 +52,7 @@
       </div>
     </div>
     </section>
-    <section class='col-12'>
+    <section class='col-3'>
     <%- include('likedPosts', {likedAudios}); -%>
     </section>
 </div>
