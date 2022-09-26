@@ -8,7 +8,11 @@
                         <ul class='alt col-8'>
                         <% for(var i=0; i<audios.length; i++) {%>
                             <li class='col-12 gtr-uniform row aln-center'>
+                            <% if(i==0){ %>
+                            <div class='col-12 row gtr-uniform aln-center no-margin-top'>
+                            <% } else{ %>
                             <div class='col-12 row gtr-uniform aln-center'>
+                            <% } %>
                                 <div class="col-3">
                                     <a href="/post/<%=audios[i]._id%>">
                                         <span class='image square fit'>
