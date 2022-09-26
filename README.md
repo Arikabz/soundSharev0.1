@@ -1,7 +1,7 @@
 # SoundShare v0.1.0
 This is a web application which works as a social network for sharing sounds and samples in a community. Users are able to upload audio files with an image, title and caption, and other users are able to download the audio, as well as comment and like the post. 
 
-**Link to project:** Pending
+**Link to project:** https://soundshare.up.railway.app
 
   ![alt tag](SoundShareV0.1.0.gif)
 
