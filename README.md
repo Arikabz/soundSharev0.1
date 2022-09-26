@@ -3,7 +3,7 @@ This is a web application which works as a social network for sharing sounds and
 
 **Link to project:** Pending
 
-  ![alt tag](public/images/SoundShareV0.1.0.gif)
+  ![alt tag](SoundShareV0.1.0.gif)
 
 ## How It's Made:
 
