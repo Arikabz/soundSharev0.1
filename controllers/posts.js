@@ -66,6 +66,9 @@ module.exports = {
 	getUploadPage(request, res) {
 		res.render('upload.ejs', {currentUser: request.user});
 	},
+	fileTypeError(request, res) {
+		res.render('fileTypeError.ejs', {currentUser: request.user});
+	},
 	getProfilePictureUpload(request, res) {
 		res.render('profilePictureUpload.ejs', {currentUser: request.user});
 	},
@@ -75,6 +78,9 @@ module.exports = {
 	},
 	async createAudio(request, res) {
 		try {
+            if(req.fileValidationError){
+                res.redirect('/fileTypeError');
+            } else {
 			// Upload image to cloudinary
 			console.log(request.files);
 			let customImg = 'none'; let
@@ -101,8 +107,10 @@ module.exports = {
 			});
 			console.log('Audio has been added!');
 			res.redirect('/profile/' + request.user.id);
+            }
 		} catch (error) {
 			console.log(error);
+            res.redirect('/fileTypeError')
 		}
 	},
 	async createPost(request, res) {

@@ -3383,6 +3383,10 @@ input, select, textarea {
     }
 
 /* blank space */
+    .blank-space35 {
+        height: 35vh;
+        background-color: #ffffff;
+    }
     .blank-space20 {
         height: 20vh;
         background-color: #ffffff;
