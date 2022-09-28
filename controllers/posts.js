@@ -78,7 +78,7 @@ module.exports = {
 	},
 	async createAudio(request, res) {
 		try {
-            if(req.fileValidationError){
+            if(request.fileValidationError){
                 res.redirect('/fileTypeError');
             } else {
 			// Upload image to cloudinary
