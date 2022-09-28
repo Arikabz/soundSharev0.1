@@ -10,6 +10,7 @@ router.get("/getUpdatePost/:id", ensureAuth, postsController.getPostUpdate);
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
 //Audio Post
+// 1. for audio post, there will be two files to possibly upload, so it has to be specified as an array (since they will be different filetypes: audio & image) as individual objects that will be passed as req.files.audio and req.files.customImg respectively
 const audioUpload = upload.fields([{name: 'audio', maxCount: 1}, {name: 'customImg', maxCount: 1}])
 router.post("/createAudioPost", audioUpload, postsController.createAudio);
 

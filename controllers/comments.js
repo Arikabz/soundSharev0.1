@@ -20,13 +20,17 @@ module.exports = {
     },
     likeComment: async (req, res) => {
         try {
+            // 1. find Comment obj
             const comment = await Comment.findById(req.params.commentId);
             let newArr = comment.likedBy;
+            // 2.1 if the likedBy array in current comment obj includes the current user, splice it from the arr
             if(newArr.includes(req.user.id)){
                 newArr.splice(newArr.indexOf(req.user.id));
+            // 2.2 if not, add it 
             } else{
                 newArr.push(req.user.id)
             }
+            // 3 update the comment obj in db with likes = arr.length
             await Comment.findOneAndUpdate(
                 { _id: req.params.commentId },
                 {
@@ -42,8 +46,6 @@ module.exports = {
     },
     deleteComment: async (req,res) => {
         try{
-            //find comment by import {} from id
-            //delete from db
             await Comment.remove({_id: req.params.commentId});
             console.log('Comment removed');
             res.redirect(`/post/${req.params.id}`)
