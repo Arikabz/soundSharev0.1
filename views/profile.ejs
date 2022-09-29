@@ -3,7 +3,7 @@
 <div class="main">
 <div class='inner'>
 <div class='row'>
-    <div class='col-3'>
+    <div class='col-3 pfp-profile'>
         <span class='image circle fit'><img class="" src="<%=user.image%>"></span>
         <% if(user.id===currentUser.id) {%>
         <a href='/profilePictureUpdate' class='button small'>Edit Picture</a>
@@ -11,8 +11,10 @@
     <p><strong><%= user.userName %></strong></p>
         <% if(user.id===currentUser.id) {%>
     <p><strong>Email</strong>: <%= user.email %></p>
+    <div class='bundle'>
     <a href="/logout" class="col-3 button small">Logout</a>
     <a href="/upload" class="col-3 button small">Upload</a>
+    </div>
         <% } %>
     <section class='col-3'>
     <%- include('likedPosts', {likedAudios}); -%>
