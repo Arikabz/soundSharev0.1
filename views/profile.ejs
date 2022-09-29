@@ -20,40 +20,43 @@
     <%- include('likedPosts', {likedAudios}); -%>
     </section>
     </div>
-    <section class='col-8 row off-1'>
+    <section class='col-8 row off-1' id='mainPosts'>
     <div class='box alt'>
-      <ul class="alt row gtr-uniform">
+      <ul class="alt row gtr-uniform col-12">
+
         <% for(var i=0; i<audios.length; i++) {%>
-        <li class='col-12 row gtr-uniform'>
-            <div class='col-3'>
-                <a href="/post/<%= audios[i]._id%>" class=''>
-                    <span class='image square fit'>
-                        <% if (audios[i].customImg!='none'){ %>
-                            <img class="" src="<%= audios[i].customImg%>">
-                        <% } else { %>
-                            <img class="" src="<%= user.image%>">
-                        <% }%>
-                    </span>
-                </a>
-            </div>
-            <div class='col-8 off-1'>
-                <h4>
-                <a href="/post/<%= audios[i]._id%>" class=''>
-                    <%=audios[i].title%>
-                </a>
-                <a class='icon brands' href='<%=audios[i].audio%>'>
-                    <i class='fas fa-download'></i>
-                </a>
-                </h4>
-                <figure>
-                <audio
-                    controls
-                    src='<%=audios[i].audio%>'>
-                </audio>
-                </figure>
+        <li class='col-12 row gtr-uniform li-mb2'>
+            <div class='col-12 gtr-uniform aln-center row'>
+                <div class="col-3">
+                    <div class='audio-player'>
+                        <audio src='<%=audios[i].audio%>'>
+                        </audio>
+                        <div class='controls'>
+                            <% if (audios[i].customImg!='none'){ %>
+                                <img class="" src="<%= audios[i].customImg%>">
+                            <% } else { %>
+                                <img class="" src="<%= audios[i].defaultImg%>">
+                            <% }%>
+                            <button class='player-button vanilla'>
+                                <i class='fas fa-play-circle'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-8 off-1'>
+                    <h4>
+                    <a href="/post/<%= audios[i]._id%>" class=''>
+                        <%=audios[i].title%>
+                    </a>
+                    <a class='icon brands' href='<%=audios[i].audio%>'>
+                        <i class='fas fa-download'></i>
+                    </a>
+                    </h4>
+                </div>
             </div>
         </li>
         <% } %>
+
         <% if(audios.length==0){ %>
             <h2>No audios yet</h2>
         <% } %>

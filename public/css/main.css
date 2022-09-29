@@ -3418,6 +3418,22 @@ input, select, textarea {
 
 
 /* Small Audio Player */
+    #mainPosts .audio-player {
+        --player-button-width: 7em;
+        width: 6em;
+        height: 6em;
+    }
+    #mainPosts .controls img {
+        object-fit: cover;
+        width: 5.5em;
+        height: 5.5em;
+        border-radius: 10%;
+    }
+    #mainPosts .player-button {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+    }
     .audio-player {
         --player-button-width: 3.8em;
         width: 3em;
@@ -3486,10 +3502,17 @@ input, select, textarea {
         margin-bottom: 1em;
     }
 
+    .li-mb2 {
+        margin-bottom: 2em;
+        padding-top: 0 !important;
+    }
+
     .scrollable-list {
         overflow-y:scroll;
         height: 15em;
     }
+
+
 
 /* Hide pfp in header if on mobile */
     @media (max-width: 400px) {
@@ -3515,10 +3538,33 @@ input, select, textarea {
         margin-left: 19vw;
     }
 
+    #mainPosts {
+        margin-top: 3em;
+        width: 100%;
+    }
+
     .image.square img {
         object-fit: cover;
         width: 4em;
         height: 4em;
         border-radius: 5%;
+    }
+
+    #mainPosts .audio-player {
+        --player-button-width: 3.8em;
+        width: 3em;
+        height: 3em;
+    }
+
+    #mainPosts .controls img {
+        object-fit: cover;
+        width: 3em;
+        height: 3em;
+        border-radius: 10%;
+    }
+    #mainPosts .player-button {
+        position: absolute;
+        top: 42%;
+        left: 50%;
     }
 }
