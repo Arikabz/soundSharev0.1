@@ -2,7 +2,7 @@
   <div id="wrapper">
     <div id="main">
         <div class='inner'>
-            <section>
+            <section class='feed' id='mainPosts'>
                 <div class="box alt">
                     <div class="row gtr-uniform">
                         <ul class='alt col-8'>
@@ -14,15 +14,20 @@
                             <div class='col-12 row gtr-uniform aln-center'>
                             <% } %>
                                 <div class="col-3">
-                                    <a href="/post/<%=audios[i]._id%>">
-                                        <span class='image square fit'>
-                                            <% if (audios[i].customImg!='none'){ %>
-                                                <img class="" src="<%= audios[i].customImg%>">
-                                            <% } else { %>
-                                                <img class="" src="<%= audios[i].defaultImg%>">
-                                            <% }%>
-                                        </span>
-                                    </a>
+                    <div class='audio-player'>
+                        <audio src='<%=audios[i].audio%>'>
+                        </audio>
+                        <div class='controls'>
+                            <% if (audios[i].customImg!='none'){ %>
+                                <img class="" src="<%= audios[i].customImg%>">
+                            <% } else { %>
+                                <img class="" src="<%= audios[i].defaultImg%>">
+                            <% }%>
+                            <button class='player-button vanilla'>
+                                <i class='fas fa-play-circle'></i>
+                            </button>
+                        </div>
+                    </div>
                                 </div>
                                 <div class='col-9'>
                                     <h4 class='no-margin-bottom'>
@@ -38,12 +43,6 @@
                                     <strong><%=audios[i].userName%></strong></a>
                                     <span class='image square small'><img src='<%=audios[i].defaultImg%>'></span>
                                     </p>
-                                    <figure>
-                                        <audio
-                                            controls
-                                            src='<%=audios[i].audio%>'>
-                                        </audio>
-                                    </figure>
                                 </div>
                             </div>
                             </li>

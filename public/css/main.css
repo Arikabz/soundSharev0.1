@@ -3522,6 +3522,10 @@ input, select, textarea {
     #header {
         padding-top: 1em;
     }
+    .post-main, .post-secondary {
+        width: 100% !important;
+    }
+
     .pfp-profile {
         width: 100% !important;
     }
@@ -3541,6 +3545,17 @@ input, select, textarea {
     #mainPosts {
         margin-top: 3em;
         width: 100%;
+    }
+
+    #mainPosts ul.col-8.alt{
+        width: 100%;
+    }
+
+    #mainPosts ul.col-8.alt p{
+        margin-bottom: 2em;
+    }
+    #mainPosts.feed{
+        margin-top: 1em;
     }
 
     .image.square img {
