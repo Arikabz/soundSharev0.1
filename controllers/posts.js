@@ -21,6 +21,9 @@ module.exports = {
 			const user = await User.findById(request.params.id);
             // 2. find all audios from the user in the current profile page, add them to array in descending order to show newest on top
 			const audios = await Audio.find({user: request.params.id}).sort({createdAt: 'desc'}).lean();
+            await audios.forEach(x=>{
+                x.download = x.audio.split('upload').join('upload/fl_attachment');
+            })
 			let likedAudios;
             // 3. find all audios that are in the array property of likedAudios in the user's object in array form and declare likedAudios to equal this.
 			await Promise.all(user.likedPosts.map(x => Audio.findById(x))).then(async values => {
@@ -48,6 +51,7 @@ module.exports = {
 			await Promise.all(aUserIds.map(x => User.findById(x))).then(values => {
 				for (const [i, x] of values.entries()) {
 					audios[i].defaultImg = x.image;
+                    audios[i].download = audios[i].audio.split('upload').join('upload/fl_attachment');
 				}
 			});
 			res.render('feed.ejs', {audios, user: request.user, currentUser: request.user});
@@ -60,6 +64,7 @@ module.exports = {
 		try {
             // 1. get audio from parameters
 			const audio = await Audio.findById(request.params.id);
+            audio.download = audio.audio.split('upload').join('upload/fl_attachment');
             // 2. get user obj
 			const postUser = await User.findById(audio.user);
             // 3. get comments 
@@ -156,6 +161,9 @@ module.exports = {
 	},
 	async updateAudioPost(request, res) {
 		try {
+            if(request.fileValidationError){
+                res.redirect('/fileTypeError');
+            } else {
 			// 1. find the current Audio obj
 			const audio = await Audio.findById(request.params.id);
             // 2. set baseline variables for current Audio ob
@@ -193,7 +201,9 @@ module.exports = {
 			}
 			console.log('Audio post has been updated!');
 			res.redirect('/post/' + request.params.id);
+            }
 		} catch (error) {
+            res.redirect('/fileTypeError')
 			console.log(error);
 		}
 	},
@@ -215,6 +225,7 @@ module.exports = {
 			console.log('Profile picture has been updated!');
 			res.redirect('/profile/' + request.user.id);
 		} catch (error) {
+            res.redirect('/fileTypeError')
 			console.log(error);
 		}
 	},

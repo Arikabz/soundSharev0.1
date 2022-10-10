@@ -3377,6 +3377,10 @@ input, select, textarea {
         margin-bottom: 3em;
     }
 
+/* margin-bottom */
+    .mb2 {
+        margin-bottom: 2em ;
+    }
 /* No margin-top */
     .no-margin-top {
         margin-top: 0 !important;
@@ -3516,9 +3520,17 @@ input, select, textarea {
 
 /* Hide pfp in header if on mobile */
     @media (max-width: 400px) {
+
+    #header nav {
+        position: fixed;
+        right: 4em;
+        top: 0.5em;
+    }
+
     .pfp-nav {
         display: none !important;
     }
+    
     #header {
         padding-top: 1em;
     }

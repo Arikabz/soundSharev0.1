@@ -13,28 +13,28 @@
                             <% } else{ %>
                             <div class='col-12 row gtr-uniform aln-center'>
                             <% } %>
-                                <div class="col-3">
-                    <div class='audio-player'>
-                        <audio src='<%=audios[i].audio%>'>
-                        </audio>
-                        <div class='controls'>
-                            <% if (audios[i].customImg!='none'){ %>
-                                <img class="" src="<%= audios[i].customImg%>">
-                            <% } else { %>
-                                <img class="" src="<%= audios[i].defaultImg%>">
-                            <% }%>
-                            <button class='player-button vanilla'>
-                                <i class='fas fa-play-circle'></i>
-                            </button>
-                        </div>
-                    </div>
+                                <div class="col-2 off-1 mb2">
+                                    <div class='audio-player'>
+                                        <audio src='<%=audios[i].audio%>'>
+                                        </audio>
+                                        <div class='controls'>
+                                            <% if (audios[i].customImg!='none'){ %>
+                                                <img class="" src="<%= audios[i].customImg%>">
+                                            <% } else { %>
+                                                <img class="" src="<%= audios[i].defaultImg%>">
+                                            <% }%>
+                                            <button class='player-button vanilla'>
+                                                <i class='fas fa-play-circle'></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class='col-9'>
+                                <div class='col-8 off-1'>
                                     <h4 class='no-margin-bottom'>
                                     <a href="/post/<%=audios[i]._id%>">
                                     <%=audios[i].title%>
                                     </a>
-                                        <a class='icon brands' href='<%=audios[i].audio%>' download='<%=audios[i].title%>'>
+                                        <a class='icon brands' href='<%=audios[i].download%>' download='<%=audios[i].title%>'>
                                             <i class='fas fa-download'></i>
                                         </a>
                                     </h4>
@@ -54,4 +54,6 @@
         </div>
     </div>
   </div>  
+<div class='blank-space10'></div>
 <%- include('partials/footer') -%>
+<script src='js/audioplayer.js'></script>

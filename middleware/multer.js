@@ -5,6 +5,7 @@ module.exports = multer({
   storage: multer.diskStorage({}),
   fileFilter: (req, file, cb) => {
     let ext = path.extname(file.originalname);
+    ext = ext.toLowerCase();
     if (ext !== ".wav" && ext !== ".mp3" && ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png" && ext != '.webp') {
       req.fileValidationError = true;
       //cb(new Error("File type is not supported"), false);

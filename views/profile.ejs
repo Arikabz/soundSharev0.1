@@ -1,73 +1,77 @@
 <%- include('partials/header') -%>
 <div id='wrapper'>
-<div class="main">
-<div class='inner'>
-<div class='row'>
-    <div class='col-3 pfp-profile'>
-        <span class='image circle fit'><img class="" src="<%=user.image%>"></span>
-        <% if(user.id===currentUser.id) {%>
-        <a href='/profilePictureUpdate' class='button small'>Edit Picture</a>
-        <% } %>
-    <p><strong><%= user.userName %></strong></p>
-        <% if(user.id===currentUser.id) {%>
-    <p><strong>Email</strong>: <%= user.email %></p>
-    <div class='bundle'>
-    <a href="/logout" class="col-3 button small">Logout</a>
-    <a href="/upload" class="col-3 button small">Upload</a>
-    </div>
-        <% } %>
-    <section class='col-3'>
-    <%- include('likedPosts', {likedAudios}); -%>
-    </section>
-    </div>
-    <section class='col-8 row off-1' id='mainPosts'>
-    <div class='box alt'>
-      <ul class="alt row gtr-uniform col-12">
-
-        <% for(var i=0; i<audios.length; i++) {%>
-        <li class='col-12 row gtr-uniform li-mb2'>
-            <div class='col-12 gtr-uniform aln-center row'>
-                <div class="col-3">
-                    <div class='audio-player'>
-                        <audio src='<%=audios[i].audio%>'>
-                        </audio>
-                        <div class='controls'>
-                            <% if (audios[i].customImg!='none'){ %>
-                                <img class="" src="<%= audios[i].customImg%>">
-                            <% } else { %>
-                                <img class="" src="<%= audios[i].defaultImg%>">
-                            <% }%>
-                            <button class='player-button vanilla'>
-                                <i class='fas fa-play-circle'></i>
-                            </button>
+    <div class="main">
+        <div class='inner'>
+            <div class='row'>
+                <div class='col-3 pfp-profile'>
+                    <span class='image circle fit'><img class="" src="<%=user.image%>"></span>
+                    <% if(user.id===currentUser.id) {%>
+                        <a href='/profilePictureUpdate' class='button small'>Edit Picture</a>
+                    <% } %>
+                    <p><strong><%= user.userName %></strong></p>
+                    <% if(user.id===currentUser.id) {%>
+                        <p><strong>Email</strong>: <%= user.email %></p>
+                        <div class='bundle'>
+                            <a href="/logout" class="col-3 button small">Logout</a>
+                            <a href="/upload" class="col-3 button small">Upload</a>
                         </div>
+                    <% } %>
+                    <section class='col-3'>
+                        <%- include('likedPosts', {likedAudios}); -%>
+                    </section>
+                </div>
+                <section class='col-8 row off-1' id='mainPosts'>
+                    <div class='box alt'>
+                        <ul class="alt row gtr-uniform col-12">
+                        <li>
+                            <div class='col-12'>
+                            <h3><%=user.userName%>'s audios</h3>
+                            </div>
+                        </li>
+                            <% for(var i=0; i<audios.length; i++) {%>
+                                <li class='col-12 row gtr-uniform li-mb2'>
+                                    <div class='col-12 gtr-uniform aln-center row'>
+                                        <div class="col-3">
+                                            <div class='audio-player'>
+                                                <audio src='<%=audios[i].audio%>' type='audio/mpeg'>
+                                                </audio>
+                                                <div class='controls'>
+                                                    <% if (audios[i].customImg!='none'){ %>
+                                                        <img class="" src="<%= audios[i].customImg%>">
+                                                    <% } else { %>
+                                                        <img class="" src="<%= audios[i].defaultImg%>">
+                                                    <% }%>
+                                                    <button class='player-button vanilla'>
+                                                        <i class='fas fa-play-circle'></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-8 off-1'>
+                                            <h4>
+                                                <a href="/post/<%= audios[i]._id%>" class=''>
+                                                    <%=audios[i].title%>
+                                                </a>
+                                                <a class='icon brands' href='<%=audios[i].download%>'>
+                                                    <i class='fas fa-download'></i>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% } %>
+                            <% if(audios.length==0){ %>
+                                <h2>No audios yet</h2>
+                            <% } %>
+                        </ul>
                     </div>
-                </div>
-                <div class='col-8 off-1'>
-                    <h4>
-                    <a href="/post/<%= audios[i]._id%>" class=''>
-                        <%=audios[i].title%>
-                    </a>
-                    <a class='icon brands' href='<%=audios[i].audio%>'>
-                        <i class='fas fa-download'></i>
-                    </a>
-                    </h4>
-                </div>
+                </section>
             </div>
-        </li>
-        <% } %>
-
-        <% if(audios.length==0){ %>
-            <h2>No audios yet</h2>
-        <% } %>
-      </ul>
+            <div class="row aln-center">
+                <a class="button next" href="/feed">Return to Feed</a>
+            </div>  
+        </div>
     </div>
-    </section>
-</div>
-        <div class="row aln-center">
-          <a class="button next" href="/feed">Return to Feed</a>
-        </div>  
-</div>
 </div>
 <div class='blank-space10'></div>
 <%- include('partials/footer') -%>
